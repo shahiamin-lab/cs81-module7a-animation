@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Loading Animation Simulator</title>
+</head>
+
+<!--
+  The body uses inline styles for simplicity.
+  This centers the content vertically and horizontally
+  and sets a neutral background color.
+-->
+<body style="font-family: monospace; text-align: center; padding-top: 100px; background-color: #f4f4f4;">
+
+<!--
+  This div displays the animated loading symbol.
+  It is updated dynamically using JavaScript.
+-->
+<div id="loader" style="font-size: 2rem; margin-bottom: 20px;">
+    Loading...
+</div>
+
+<!--
+  This div shows the current status message.
+  JavaScript updates this text when loading is complete.
+-->
+<div id="status">Please wait</div>
+
+<script>
+    /*
+      This function controls the entire loading animation.
+      It runs once when the page loads.
