@@ -30,3 +30,88 @@
     /*
       This function controls the entire loading animation.
       It runs once when the page loads.
+ */
+    function runLoadingAnimation() {
+
+        /*
+          getElementById allows JavaScript to access
+          specific HTML elements so we can change their content.
+        */
+        const loader = document.getElementById("loader");
+        const status = document.getElementById("status");
+
+        /*
+          frames is an array of emojis and symbols.
+          Each interval tick shows the next frame.
+        */
+        const frames = ["⏳", "⌛", ".", "..", "..."];
+
+        // index keeps track of which frame should display next
+        let index = 0;
+
+        // cycleCount tracks how many full animation loops have completed
+        let cycleCount = 0;
+
+        // maxCycles controls how long the animation runs
+        const maxCycles = 10;
+
+        /*
+          setInterval creates an asynchronous loop.
+          The function inside runs every 500 milliseconds.
+        */
+        const interval = setInterval(() => {
+
+            /*
+              Update the loader text using the current frame.
+              The modulo operator (%) keeps the index within bounds.
+            */
+            loader.textContent = frames[index % frames.length];
+
+            // Move to the next frame
+            index++;
+
+            /*
+              Each time we complete one full set of frames,
+              we increase the cycle count.
+            */
+            if (index % frames.length === 0) {
+                cycleCount++;
+            }
+
+            /*
+              Once the maximum number of cycles is reached,
+              clearInterval stops the asynchronous loop.
+            */
+            if (cycleCount >= maxCycles) {
+                clearInterval(interval);
+
+                // Final UI update after the animation stops
+                loader.textContent = "✅";
+                status.textContent = "Done!";
+
+                /*
+                  NEW FEATURE:
+                  Change the background color when loading finishes
+                  to visually signal completion.
+                */
+                document.body.style.backgroundColor = "#d4edda";
+            }
+
+        }, 500); // 500ms delay controls animation speed
+    }
+
+    /*
+      Start the loading animation immediately
+      when the page loads.
+    */
+    runLoadingAnimation();
+
+    /*
+      CREATIVE IDEA (comment only):
+      Add background music or a progress bar
+      that fills up as cycleCount increases.
+    */
+</script>
+
+</body>
+</html>
